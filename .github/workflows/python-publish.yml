@@ -20,20 +20,6 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Check if package version exists on PyPI
-        id: check_version
-        run: |
-          PACKAGE_VERSION=$(python -c "from kivymd._version.__version__ import __version__; print(__version__)")
-          echo "Checking if version $PACKAGE_VERSION exists on PyPI"
-          if curl -s https://pypi.org/pypi/kivymd2/$PACKAGE_VERSION/json | grep 'Not Found'; then
-            echo "Version $PACKAGE_VERSION not found on PyPI. Proceeding with deployment."
-            echo "version_exists=false" >> $GITHUB_ENV
-          else
-            echo "Version $PACKAGE_VERSION already exists on PyPI. Exiting."
-            echo "version_exists=true" >> $GITHUB_ENV
-            exit 0  # Fail silently or skip the job
-          fi
-
       - name: Install dependencies
         if: env.version_exists == 'false'
         run: |
