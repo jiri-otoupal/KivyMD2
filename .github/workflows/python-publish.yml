@@ -23,9 +23,9 @@ jobs:
       - name: Check if package version exists on PyPI
         id: check_version
         run: |
-          PACKAGE_VERSION=$(python -c "from decentnet.__version__ import __version__; print(__version__)")
+          PACKAGE_VERSION=$(python -c "from kivymd._version.__version__ import __version__; print(__version__)")
           echo "Checking if version $PACKAGE_VERSION exists on PyPI"
-          if curl -s https://pypi.org/pypi/decentmesh/$PACKAGE_VERSION/json | grep 'Not Found'; then
+          if curl -s https://pypi.org/pypi/kivymd2/$PACKAGE_VERSION/json | grep 'Not Found'; then
             echo "Version $PACKAGE_VERSION not found on PyPI. Proceeding with deployment."
             echo "version_exists=false" >> $GITHUB_ENV
           else
