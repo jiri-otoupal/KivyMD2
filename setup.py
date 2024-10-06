@@ -131,6 +131,8 @@ if __name__ == "__main__":
             "kivy>=2.3.0",
             "pillow",
             "materialyoucolor>=2.0.7",
+            "exceptiongroup",
+            "asyncgui",
             "asynckivy>=0.6,<0.7",
         ],
         setup_requires=[],
